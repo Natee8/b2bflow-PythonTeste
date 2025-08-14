@@ -1,14 +1,17 @@
+```bash
 1. Clonar o repositório:
 
 git clone https://github.com/Natee8/b2bflow-PythonTeste.git
+
 cd BACKEND
 
 2. Criar um ambiente virtual e instalar dependencias:
+
    python -m venv venv
    venv\Scripts\activate
    pip install -r requirements.txt
 
-3. Configurar o `.env`:
+3. Configurar o `.env` (caso necessario):
 
 SUPABASE_URL=SEU_SUPABASE_URL
 SUPABASE_KEY=SEU_SUPABASE_KEY
@@ -16,9 +19,11 @@ ZAPI_INSTANCE_ID=SEU_INSTANCE_ID
 ZAPI_INSTANCE_TOKEN=SEU_INSTANCE_TOKEN
 ZAPI_CLIENT_TOKEN=SEU_CLIENT_TOKEN
 
-## Execução
+Criar tabela Peoples no Supabase com as colunas:
+name (string)
+phone (string)
 
-```bash
+## Execução
 python main.py
 
 
