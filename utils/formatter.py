@@ -1,6 +1,6 @@
 import re
 
-#opcional para enviar somente para numeros brasileiros
+#isso é opcional para enviar somente para numeros brasileiros
 
 def format_phone(number: str):
     if not number:
