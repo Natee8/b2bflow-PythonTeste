@@ -7,18 +7,21 @@ load_dotenv()
 ZAPI_INSTANCE_ID = os.getenv("ZAPI_INSTANCE_ID")
 ZAPI_TOKEN = os.getenv("ZAPI_TOKEN")
 
-ZAPI_BASE_URL = f"https://api.z-api.io/instances/{ZAPI_INSTANCE_ID}/token/{ZAPI_TOKEN}"
+ZAPI_BASE_URL = f"https://api.z-api.io/instances/{ZAPI_INSTANCE_ID}/send-text"
 
 def sendMessage(name: str, number: str):
-    url = f"{ZAPI_BASE_URL}/send-text" 
     text = f"Olá {name}, tudo bem com você?!"
     payload = {
-        "phone": str(number), 
+        "phone": str(number),
         "message": text
     }
-    try:
-        response = requests.post(url, json=payload)
+    headers = {
+        "Client-Token": ZAPI_TOKEN
+    }
 
+    try:
+        response = requests.post(ZAPI_BASE_URL, json=payload, headers=headers)
+        
         if response.status_code == 200:
             return {
                 "status": "success",
@@ -31,9 +34,9 @@ def sendMessage(name: str, number: str):
                 "details": response.text
             }
 
-    except requests.RequestException as e:  
+    except requests.RequestException as e:
         return {
             "status": "error",
             "message": "Erro ao conectar com Z-API",
-            "details": str(e)  
+            "details": str(e)
         }
